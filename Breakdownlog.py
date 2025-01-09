@@ -7,6 +7,7 @@ from streamlit_js_eval import streamlit_js_eval
 import time
 import timeDelta
 import database2
+import unicodedata
 
 #from pages.itemnumber import lines_read
 #from pages.itemnumber import tech_read 
@@ -26,15 +27,17 @@ st.set_page_config(
 )
 
 def lines_read():
-    df = pd.read_excel('itemnumbers.xlsx')
+    normalized_filename = unicodedata.normalize('NFC', 'itemnumbers.xlsx')
+    df = pd.read_excel(normalized_filename)
     
     df=df[['Line','Machines','Item No']]
     #print(df)
     return df
 
 def tech_read():
-
-    df = pd.read_excel("Itemnumbers.xlsx", sheet_name="Techname")
+    normalized_filename = unicodedata.normalize('NFC', 'itemnumbers.xlsx')
+   
+    df = pd.read_excel(normalized_filename, sheet_name="Techname")
     technames=df["Name"].unique().tolist()
     return technames
 

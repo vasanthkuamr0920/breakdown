@@ -3,4 +3,4 @@ pandas
 streamlit_js_eval
 mysql.connector
 openpyxl
-unicodedata
+
